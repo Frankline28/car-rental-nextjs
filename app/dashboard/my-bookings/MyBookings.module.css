@@ -1,0 +1,180 @@
+.page {
+  padding-top: 6rem;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.bookingList {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.bookingCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.bookingCard:hover {
+  border-color: var(--accent);
+}
+
+.assetPanel {
+  width: 350px;
+  position: relative;
+  background: var(--surface-accent);
+  border-right: 1px solid var(--border);
+}
+
+.assetImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.5s ease;
+}
+
+.bookingCard:hover .assetImage {
+  filter: grayscale(0);
+}
+
+.detailsPanel {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.statusBadge {
+  font-family: ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid;
+}
+
+.statusConfirmed {
+  color: #00ff00;
+  border-color: #00ff00;
+}
+
+.statusCancelled {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+.assetTitle {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.infoLine {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+}
+
+.specGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.specLabel {
+  font-family: ui-monospace, monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.specValue {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.footerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+@media (max-width: 1100px) {
+  .bookingCard {
+    flex-direction: column;
+  }
+  .assetPanel {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header { flex-direction: column; align-items: flex-start; }
+  .title { font-size: 2.5rem; }
+  .specGrid { grid-template-columns: 1fr; }
+}

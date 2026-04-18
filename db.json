@@ -1,0 +1,348 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@carrental.com",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "name": "frank",
+      "email": "frank123@gmail.com",
+      "password": "123456",
+      "role": "customer",
+      "id": "SwGus-XRlSE"
+    }
+  ],
+  "cars": [
+    {
+      "id": "1",
+      "make": "Hyundai",
+      "model": "creta",
+      "year": 2023,
+      "type": "suv",
+      "transmission": "Automatic",
+      "fuel": "petrol",
+      "seats": 5,
+      "pricePerHour": 80,
+      "pricePerDay": 600,
+      "pricePerWeekly": 3200,
+      "pricePerMonthly": 11000,
+      "image": "creta.avif",
+      "features": [
+        "Sport Exhaust",
+        "Leather Interior",
+        "Bose Sound System"
+      ],
+      "specifications": {
+        "engine": "3.0L Twin-Turbo Flat-6",
+        "power": "379 hp",
+        "acceleration": "4.0s (0-60 mph)"
+      },
+      "location": "Downtown",
+      "quantity": 2,
+      "available": true
+    },
+    {
+      "id": "2",
+      "make": "maruti suzuki",
+      "model": "baleno",
+      "year": 2024,
+      "type": "hachback",
+      "transmission": "manual",
+      "fuel": "petrol",
+      "seats": 5,
+      "pricePerHour": 60,
+      "pricePerDay": 400,
+      "pricePerWeekly": 2400,
+      "pricePerMonthly": 8500,
+      "image": "baleno1.webp",
+      "features": [
+        "front wheel drive",
+        "Air Suspension",
+        "Sunroof"
+      ],
+      "specifications": {
+        "engine": "3.0L 6-cylinder PHEV",
+        "power": "434 hp",
+        "acceleration": "5.5s (0-60 mph)"
+      },
+      "location": "Airport",
+      "quantity": 5,
+      "available": true
+    },
+    {
+      "id": "3",
+      "make": "Honda",
+      "model": "City",
+      "year": 2023,
+      "type": "sedan",
+      "transmission": "Automatic",
+      "fuel": "Diesel",
+      "seats": 5,
+      "pricePerHour": 70,
+      "pricePerDay": 480,
+      "pricePerWeekly": 2800,
+      "pricePerMonthly": 9500,
+      "image": "city.avif",
+      "features": [
+        "Heated Seats",
+        "Burmester Surround Sound",
+        "Active Park Assist"
+      ],
+      "specifications": {
+        "engine": "3.0L Inline-6 Turbo",
+        "power": "429 hp",
+        "acceleration": "4.9s (0-60 mph)"
+      },
+      "location": "City Center",
+      "quantity": 3,
+      "available": true
+    },
+    {
+      "id": "4",
+      "make": "toyota",
+      "model": "innova",
+      "year": 2024,
+      "type": "SUV",
+      "transmission": "Manual",
+      "fuel": "petrol",
+      "seats": 7,
+      "pricePerHour": 55,
+      "pricePerDay": 380,
+      "pricePerWeekly": 2200,
+      "pricePerMonthly": 7500,
+      "image": "innova.avif",
+      "features": [
+        "Carbon Fiber Roof",
+        "M Sport Seats",
+        "Head-up Display"
+      ],
+      "specifications": {
+        "engine": "3.0L Twin-Turbo Inline-6",
+        "power": "473 hp",
+        "acceleration": "4.1s (0-60 mph)"
+      },
+      "location": "Airport",
+      "quantity": 4,
+      "available": true
+    },
+    {
+      "id": "5",
+      "make": "toyota",
+      "model": "fortuner",
+      "year": 2020,
+      "type": "SUV",
+      "transmission": "Manual",
+      "fuel": "petrol",
+      "seats": 7,
+      "pricePerHour": 65,
+      "pricePerDay": 400,
+      "pricePerWeekly": 3000,
+      "pricePerMonthly": 8000,
+      "image": "fortuner.jpg",
+      "features": [
+        "Carbon Fiber Roof",
+        "M Sport Seats",
+        "Head-up Display"
+      ],
+      "specifications": {
+        "engine": "5.0L Inline-6",
+        "power": "473 hp",
+        "acceleration": "5 s (0-60 mph)"
+      },
+      "location": "City Center",
+      "quantity": 4,
+      "available": true
+    },
+    {
+      "id": "6",
+      "make": "maruti suzuki",
+      "model": "swift",
+      "year": 2024,
+      "type": "hatchback",
+      "transmission": "Manual",
+      "fuel": "petrol",
+      "seats": 5,
+      "pricePerHour": 50,
+      "pricePerDay": 350,
+      "pricePerWeekly": 2000,
+      "pricePerMonthly": 7000,
+      "image": "swift.avif",
+      "features": [
+        "Carbon Fiber Roof",
+        "M Sport Seats",
+        "Head-up Display"
+      ],
+      "specifications": {
+        "engine": "1.2L Inline-4",
+        "power": "83 hp",
+        "acceleration": "11.5s (0-60 mph)"
+      },
+      "location": "West Side",
+      "quantity": 6,
+      "available": true
+    },
+    {
+      "id": "7",
+      "make": "Hyundai",
+      "model": "i20",
+      "year": 2022,
+      "type": "hatchback",
+      "transmission": "Manual",
+      "fuel": "petrol",
+      "seats": 5,
+      "pricePerHour": 55,
+      "pricePerDay": 400,
+      "pricePerWeekly": 2200,
+      "pricePerMonthly": 7500,
+      "image": "i20.webp",
+      "features": [
+        "Carbon Fiber Roof",
+        "M Sport Seats",
+        "Head-up Display"
+      ],
+      "specifications": {
+        "engine": "1.0L Turbocharged Inline-3",
+        "power": "120 hp",
+        "acceleration": "10.2s (0-60 mph)"
+      },
+      "location": "Downtown",
+      "quantity": 5,
+      "available": true
+    },
+    {
+      "id": "8",
+      "make": "Honda",
+      "model": "Amaze",
+      "year": 2023,
+      "type": "sedan",
+      "transmission": "Automatic",
+      "fuel": "Diesel",
+      "seats": 5,
+      "pricePerHour": 65,
+      "pricePerDay": 450,
+      "pricePerWeekly": 2500,
+      "pricePerMonthly": 8000,
+      "image": "amaze.webp",
+      "features": [
+        "Carbon Fiber Roof",
+        "M Sport Seats",
+        "Head-up Display"
+      ],
+      "specifications": {
+        "engine": "1.5L Inline-4",
+        "power": "103 hp",
+        "acceleration": "12.5s (0-60 mph)"
+      },
+      "location": "City Center",
+      "quantity": 4,
+      "available": true
+    },
+    {
+      "id": "9",
+      "make": "Hyundai",
+      "model": "verna",
+      "year": 2024,
+      "type": "sedan",
+      "transmission": "Automatic",
+      "fuel": "petrol",
+      "seats": 5,
+      "pricePerHour": 70,
+      "pricePerDay": 480,
+      "pricePerWeekly": 2800,
+      "pricePerMonthly": 9500,
+      "image": "verna.avif",
+      "features": [
+        "Carbon Fiber Roof",
+        "M Sport Seats",
+        "Head-up Display"
+      ],
+      "specifications": {
+        "engine": "1.5L Turbocharged Inline-4",
+        "power": "120 hp",
+        "acceleration": "10.2s (0-60 mph)"
+      },
+      "location": "Downtown",
+      "quantity": 3,
+      "available": true
+    },
+    {
+      "id": "10",
+      "make": "Honda",
+      "model": "civic",
+      "year": 2024,
+      "type": "sedan",
+      "transmission": "Automatic",
+      "fuel": "petrol",
+      "seats": 5,
+      "pricePerHour": 75,
+      "pricePerDay": 500,
+      "pricePerWeekly": 3000,
+      "pricePerMonthly": 10000,
+      "image": "civic.webp",
+      "features": [
+        "Carbon Fiber Roof",
+        "M Sport Seats",
+        "Head-up Display"
+      ],
+      "specifications": {
+        "engine": "2.0L Inline-4",
+        "power": "158 hp",
+        "acceleration": "8.2s (0-60 mph)"
+      },
+      "location": "City Center",
+      "quantity": 4,
+      "available": true
+    }
+  ],
+  "bookings": [
+   
+  ],
+  "packages": [
+    {
+      "id": "hourly",
+      "name": "Hourly",
+      "multiplier": 1,
+      "description": "Short city trips"
+    },
+    {
+      "id": "daily",
+      "name": "Daily",
+      "multiplier": 1,
+      "description": "Standard day rental"
+    },
+    {
+      "id": "weekly",
+      "name": "Weekly",
+      "multiplier": 0.85,
+      "description": "15% off for long stays"
+    },
+    {
+      "id": "monthly",
+      "name": "Monthly",
+      "multiplier": 0.7,
+      "description": "30% off for max savings"
+    }
+  ],
+  "locations": [
+    {
+      "id": "1",
+      "name": "Airport"
+    },
+    {
+      "id": "2",
+      "name": "Downtown"
+    },
+    {
+      "id": "3",
+      "name": "City Center"
+    },
+    {
+      "id": "4",
+      "name": "West Side"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
