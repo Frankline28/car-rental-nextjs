@@ -115,9 +115,10 @@ export default function FleetPage() {
                       <div className="ledger-card h-full flex flex-col group">
                         <div className="relative h-56 overflow-hidden border-b border-border">
                           <img 
-                            src={car.image} 
+                            src={car.image.startsWith('http') ? car.image : `/${car.image}`} 
                             alt={car.model} 
                             className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" 
+                            style={{ objectFit: 'cover' }}
                           />
                           <div className="absolute bottom-0 left-0 bg-accent text-background px-4 py-1 mono-text text-[10px] font-black">
                             {car.type.toUpperCase()}_SPEC
@@ -130,7 +131,7 @@ export default function FleetPage() {
                                  <p className="mono-text text-[10px] text-muted">{car.year} // TRANSMISSION::{car.transmission}</p>
                               </div>
                               <div className="text-right">
-                                 <p className="text-2xl font-black text-primary">${car.pricePerDay}</p>
+                                 <p className="text-2xl font-black text-primary">₹{car.pricePerDay}</p>
                                  <p className="mono-text text-[9px] text-muted">Per_Cycle</p>
                               </div>
                            </div>

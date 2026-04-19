@@ -168,7 +168,7 @@ export default function AdminFleetPage() {
            ) : (
              filteredCars.map((car) => (
                 <div key={car.id} className={styles.carRow}>
-                   <img src={car.image} className={styles.carImage} />
+                   <img src={car.image.startsWith('http') ? car.image : `/${car.image}`} className={styles.carImage} />
                    
                    <div className={styles.carInfo}>
                       <h3>{car.make} {car.model}</h3>
@@ -184,7 +184,7 @@ export default function AdminFleetPage() {
                    </div>
 
                    <div className={styles.pricing}>
-                      <p className={styles.priceValue}>${car.pricePerDay}</p>
+                      <p className={styles.priceValue}>₹{car.pricePerDay.toLocaleString('en-IN')}</p>
                       <p className={styles.priceLabel}>BASE_DEBIT_DAY</p>
                    </div>
 
@@ -239,7 +239,7 @@ export default function AdminFleetPage() {
                                   />
                                </div>
                                <div className="aspect-video bg-surface-accent border border-border overflow-hidden">
-                                  <img src={formData.image} className="w-full h-full object-cover grayscale" alt="Preview" />
+                                  <img src={formData.image && (formData.image.startsWith('http') ? formData.image : `/${formData.image}`)} className="w-full h-full object-cover grayscale" alt="Preview" style={{ objectFit: 'cover' }} />
                                </div>
                             </div>
 

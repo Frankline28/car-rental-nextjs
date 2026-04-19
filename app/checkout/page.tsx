@@ -74,7 +74,7 @@ function CheckoutContent() {
     else if (pkg.id === 'weekly') base = car.pricePerWeekly;
     else if (pkg.id === 'monthly') base = car.pricePerMonthly;
     else base = car.pricePerDay;
-    return base + 24; // Base + Fees
+    return base + 2000; // Base + Fees in INR
   };
 
   const handleConfirm = async () => {
@@ -85,6 +85,7 @@ function CheckoutContent() {
         userId: user.id,
         carId: car.id,
         carName: `${car.make} ${car.model}`,
+        carImage: car.image,
         packageId: pkg.id,
         packageName: pkg.name,
         date: bookingDate || new Date().toISOString(),
@@ -294,7 +295,7 @@ function CheckoutContent() {
             <h3 className={styles.summaryTitle}>RESERVATION_MODESTO</h3>
             
             <div className="mb-10 text-center">
-              <img src={car.image} className="w-full grayscale border border-border mb-6" />
+              <img src={car.image.startsWith('http') ? car.image : `/${car.image}`} className="w-full grayscale border border-border mb-6" />
               <h4 className="text-xl font-black text-primary uppercase tracking-tighter">{car.make} {car.model}</h4>
               <p className="mono-text text-[9px] text-muted mt-2">{car.year} // {pkg.name.toUpperCase()}_CLASS</p>
             </div>
@@ -302,21 +303,21 @@ function CheckoutContent() {
             <div className="space-y-4 mb-10">
               <div className={styles.summaryItem}>
                 <span className={styles.summaryLabel}>Base_Payload</span>
-                <span className={styles.summaryValue}>${calculateTotal() - 24}</span>
+                <span className={styles.summaryValue}>₹{(calculateTotal() - 2000).toLocaleString('en-IN')}</span>
               </div>
               <div className={styles.summaryItem}>
                 <span className={styles.summaryLabel}>Security_Array</span>
-                <span className={styles.summaryValue}>$15.00</span>
+                <span className={styles.summaryValue}>₹1,250.00</span>
               </div>
               <div className={styles.summaryItem}>
                 <span className={styles.summaryLabel}>Network_Latency_Fee</span>
-                <span className={styles.summaryValue}>$9.00</span>
+                <span className={styles.summaryValue}>₹750.00</span>
               </div>
             </div>
 
             <div className={styles.totalRow}>
                <span className={styles.totalLabel}>TOTAL_DEBIT</span>
-               <span className={styles.totalValue}>${calculateTotal()}</span>
+               <span className={styles.totalValue}>₹{calculateTotal().toLocaleString('en-IN')}</span>
             </div>
             
             <div className="mt-10 p-4 border border-border bg-surface-accent flex gap-4 items-center">

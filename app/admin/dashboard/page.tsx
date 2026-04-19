@@ -10,7 +10,7 @@ import {
   Briefcase, 
   ChevronRight, 
   ArrowUpRight, 
-  DollarSign, 
+  IndianRupee, 
   Calendar,
   ShieldCheck,
   Package
@@ -78,7 +78,7 @@ export default function AdminDashboardPage() {
   );
 
   const statCards = [
-    { label: "NET_REVENUE", value: `$${stats.revenue.toLocaleString()}`, icon: DollarSign, trend: "+12.5%" },
+    { label: "NET_REVENUE", value: `₹${stats.revenue.toLocaleString('en-IN')}`, icon: IndianRupee, trend: "+12.5%" },
     { label: "TOTAL_BOOKINGS", value: stats.bookings, icon: Briefcase, trend: "+8.2%" },
     { label: "ASSET_COUNT", value: stats.cars, icon: Car, trend: "STABLE" },
     { label: "OPERATOR_BASE", value: stats.users, icon: Users, trend: "+15.3%" },
@@ -161,7 +161,7 @@ export default function AdminDashboardPage() {
                           <span className="mono-text text-[9px] text-muted">{booking.packageName.toUpperCase()}</span>
                         </td>
                         <td>
-                          <span className="mono-text text-[10px] font-black">${booking.totalAmount}</span>
+                          <span className="mono-text text-[10px] font-black">₹{booking.totalAmount.toLocaleString('en-IN')}</span>
                         </td>
                         <td>
                           <span className={`${styles.statusBadge} ${booking.status === 'confirmed' ? styles.statusCompleted : styles.statusPending}`}>

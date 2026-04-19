@@ -38,7 +38,7 @@ export default function Home() {
           <div className="scanline" />
           <div className={styles.heroBg}>
             <img
-              src="https://images.unsplash.com/photo-1542362567-b058c02b9ac1?auto=format&fit=crop&q=80&w=2000"
+              src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2000"
               alt="Cyber Car"
               className={styles.heroImg}
             />
@@ -89,9 +89,9 @@ export default function Home() {
                 <label className={styles.filterLabel}>Class_Spec</label>
                 <select className={styles.filterInput}>
                   <option>All_Variants</option>
-                  <option>Luxury_Class</option>
+                  <option>Hackback</option>
                   <option>SUV_Utility</option>
-                  <option>Sport_High</option>
+                  <option>sedon</option>
                 </select>
               </div>
 
@@ -128,9 +128,10 @@ export default function Home() {
                   <div className="ledger-card h-full flex flex-col">
                     <div className="relative h-60 overflow-hidden border-b border-border">
                       <img
-                        src={car.image}
+                        src={car.image.startsWith('http') ? car.image : `/${car.image}`}
                         alt={car.model}
                         className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-500"
+                        style={{ objectFit: 'cover' }}
                       />
                       <div className="absolute top-0 right-0 bg-accent text-background px-3 py-1 mono-text text-[9px] font-black">
                         {car.type}
@@ -143,7 +144,7 @@ export default function Home() {
                           <p className="mono-text text-[10px] text-muted">{car.year} // {car.transmission}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-xl font-black text-primary">${car.pricePerDay}</p>
+                          <p className="text-xl font-black text-primary">₹{car.pricePerDay}</p>
                           <p className="mono-text text-[9px] text-muted">Per_Cycle</p>
                         </div>
                       </div>

@@ -109,9 +109,10 @@ export default function MyBookingsPage() {
                     >
                        <div className={styles.assetPanel}>
                           <img 
-                             src={booking.carImage || "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800"} 
+                             src={booking.carImage ? (booking.carImage.startsWith('http') ? booking.carImage : `/${booking.carImage}`) : '/placeholder-car.jpg'}
                              className={styles.assetImage} 
                              alt={booking.carName}
+                             style={{ objectFit: 'cover' }}
                           />
                           <div className="absolute top-6 left-6 mono-text text-[9px] text-white bg-black/50 px-3 py-1 backdrop-blur-sm">
                              ASSET_VISUAL_0{i+1}
@@ -154,7 +155,7 @@ export default function MyBookingsPage() {
                              <div className="flex items-center gap-8">
                                 <div className="text-right">
                                    <p className="mono-text text-[8px] text-muted mb-1">DEBITED_TOTAL</p>
-                                   <p className={styles.price}>${booking.totalAmount}</p>
+                                   <p className={styles.price}>₹{booking.totalAmount.toLocaleString('en-IN')}</p>
                                 </div>
                                 {booking.status === 'confirmed' && (
                                    <button 

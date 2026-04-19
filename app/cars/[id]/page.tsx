@@ -95,7 +95,7 @@ export default function CarDetailsPage() {
                 <h1 className={styles.title}>{car.make} <span className={styles.titleAccent}>{car.model}</span></h1>
               </div>
               <div className="text-right">
-                <p className="text-4xl font-black text-primary tracking-tighter">${currentPrice()}</p>
+                <p className="text-4xl font-black text-primary tracking-tighter">₹{currentPrice()}</p>
                 <p className="mono-text text-[10px] text-muted">Starting_Rate</p>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function CarDetailsPage() {
 
           <section className={styles.gallery}>
             <div className={styles.mainImageContainer}>
-              <img src={car.image} alt={car.model} className={styles.mainImage} />
+              <img src={car.image.startsWith('http') ? car.image : `/${car.image}`} alt={car.model} className={styles.mainImage} />
               <div className="absolute top-0 right-0 bg-accent text-background px-6 py-2 mono-text text-sm font-black">
                 {car.type}_SPEC
               </div>
@@ -158,7 +158,7 @@ export default function CarDetailsPage() {
                        onClick={() => setSelectedPackage(pkg.id)}
                        className={`btn-cyber ${selectedPackage === pkg.id ? 'btn-cyber-active' : ''} w-full`}
                     >
-                       {pkg.name} // ${car?.[`pricePer${pkg.name}`] || car.pricePerDay}
+                       {pkg.name} // ₹{car?.[`pricePer${pkg.name}`] || car.pricePerDay}
                     </button>
                   ))}
                 </div>
@@ -185,11 +185,11 @@ export default function CarDetailsPage() {
             <div className="pt-8 border-t border-border mb-10">
                <div className="flex justify-between items-center mb-4">
                   <span className="mono-text text-[10px] text-muted">Gross_Subtotal</span>
-                  <span className="text-xl font-black text-primary">${currentPrice()}</span>
+                  <span className="text-xl font-black text-primary">₹{currentPrice()}</span>
                </div>
                <div className="flex justify-between items-center">
                   <span className="mono-text text-[10px] text-muted">Net_Network_Fee</span>
-                  <span className="mono-text text-[10px] text-primary">$24.00</span>
+                  <span className="mono-text text-[10px] text-primary">₹2,000.00</span>
                </div>
             </div>
 
