@@ -3,31 +3,25 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/auth';
 import { API } from '@/lib/api';
+import type { Booking } from '@/lib/api';
 import { 
-  Calendar, 
-  MapPin, 
-  Car, 
-  Clock, 
-  XCircle, 
-  CheckCircle2, 
-  ChevronRight,
-  Receipt,
-  ShieldCheck,
-  ArrowRight
+  ShieldCheck
 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './MyBookings.module.css';
 
 export default function MyBookingsPage() {
   const { user, isLoading: authLoading } = useAuth();
-  const [bookings, setBookings] = useState([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user && !authLoading) return;
 
     async function fetchBookings() {
+      if (!user) return;
       try {
         const data = await API.bookings.getByUser(user.id);
         // Sort by timestamp descending
@@ -90,7 +84,7 @@ export default function MyBookingsPage() {
                ) : bookings.length === 0 ? (
                  <div className="text-center py-32 border border-dashed border-border">
                     <div className="w-20 h-20 border border-border flex items-center justify-center mx-auto mb-8">
-                       <Clock className="w-8 h-8 text-muted" />
+                       <div className="w-8 h-8 text-muted" />
                     </div>
                     <h3 className="text-2xl font-black text-primary mb-3 uppercase tracking-tighter">No_Active_Assignments</h3>
                     <p className="mono-text text-xs text-muted max-w-sm mx-auto leading-relaxed uppercase">
@@ -107,17 +101,19 @@ export default function MyBookingsPage() {
                       key={booking.id} 
                       className={styles.bookingCard}
                     >
-                       <div className={styles.assetPanel}>
-                          <img 
-                             src={booking.carImage ? (booking.carImage.startsWith('http') ? booking.carImage : `/${booking.carImage}`) : '/placeholder-car.jpg'}
-                             className={styles.assetImage} 
-                             alt={booking.carName}
-                             style={{ objectFit: 'cover' }}
-                          />
-                          <div className="absolute top-6 left-6 mono-text text-[9px] text-white bg-black/50 px-3 py-1 backdrop-blur-sm">
-                             ASSET_VISUAL_0{i+1}
-                          </div>
-                       </div>
+                        <div className={styles.assetPanel}>
+                           <div className="relative w-full h-full">
+                              <Image 
+                                 src={booking.carImage ? (booking.carImage.startsWith('http') ? booking.carImage : `/${booking.carImage}`) : '/placeholder-car.jpg'}
+                                 alt={booking.carName}
+                                 fill
+                                 className="object-cover"
+                              />
+                           </div>
+                           <div className="absolute top-6 left-6 mono-text text-[9px] text-white bg-black/50 px-3 py-1 backdrop-blur-sm">
+                              ASSET_VISUAL_0{i+1}
+                           </div>
+                        </div>
                        
                        <div className={styles.detailsPanel}>
                           <div className={styles.metaRow}>
@@ -131,7 +127,7 @@ export default function MyBookingsPage() {
                           </div>
 
                           <h3 className={styles.assetTitle}>{booking.carName}</h3>
-                          <div className={styles.infoLine}>[ {booking.packageName.toUpperCase()} ] // ASSIGNED_TO_OPERATOR</div>
+                          <div className={styles.infoLine}>[ {booking.packageName.toUpperCase()} ] {"//"} {"ASSIGNED_TO_OPERATOR"}</div>
                           
                           <div className={styles.specGrid}>
                              <div className={styles.specItem}>
@@ -141,7 +137,7 @@ export default function MyBookingsPage() {
                              <div className={styles.specItem}>
                                 <span className={styles.specLabel}>Schedule_Start</span>
                                 <span className={styles.specValue}>
-                                   {new Date(booking.date).toLocaleDateString()} // {new Date(booking.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                   {new Date(booking.date).toLocaleDateString()} {"//"} {new Date(booking.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </span>
                              </div>
                           </div>

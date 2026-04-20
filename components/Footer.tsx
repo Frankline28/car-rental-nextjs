@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin, ExternalLink, Globe, Shield } from 'lucide-react';
+import { Mail, Globe, Shield } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const footerLinks = {

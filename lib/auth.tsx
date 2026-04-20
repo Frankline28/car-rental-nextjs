@@ -8,6 +8,7 @@ type User = {
   id: string;
   name: string;
   email: string;
+  password?: string;
   role: 'admin' | 'customer' | 'guest';
 };
 
@@ -27,11 +28,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('car-rental-user');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-    setIsLoading(false);
+    const initAuth = () => {
+      const savedUser = localStorage.getItem('car-rental-user');
+      if (savedUser) {
+        try {
+          setUser(JSON.parse(savedUser));
+        } catch (e) {
+          console.error('Failed to parse saved user', e);
+        }
+      }
+      setIsLoading(false);
+    };
+    
+    initAuth();
   }, []);
 
   const login = async (email: string, password: string) => {

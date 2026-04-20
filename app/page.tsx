@@ -2,14 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { API } from '@/lib/api';
-import { Search, MapPin, Calendar, Car, ChevronRight, Star, Shield, Clock, MousePointer2 } from 'lucide-react';
+import type { Car } from '@/lib/api';
+import { Car as CarIcon, ChevronRight, Star, Shield, Clock } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import styles from './Home.module.css';
 
 export default function Home() {
-  const [featuredCars, setFeaturedCars] = useState([]);
-  const [locations, setLocations] = useState([]);
+  const [featuredCars, setFeaturedCars] = useState<Car[]>([]);
+  const [locations, setLocations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,10 +39,12 @@ export default function Home() {
         <section className={styles.hero}>
           <div className="scanline" />
           <div className={styles.heroBg}>
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2000"
               alt="Cyber Car"
-              className={styles.heroImg}
+              fill
+              priority
+              className={`${styles.heroImg} object-cover`}
             />
             <div className={styles.heroOverlay} />
           </div>
@@ -52,7 +56,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <span className={styles.badge}>
-                Terminal_Session_01 // Fleet_Access
+                Terminal_Session_01 {"//"} Fleet_Access
               </span>
               <h1 className={styles.title}>
                 Frank<br />
@@ -89,9 +93,9 @@ export default function Home() {
                 <label className={styles.filterLabel}>Class_Spec</label>
                 <select className={styles.filterInput}>
                   <option>All_Variants</option>
-                  <option>Hackback</option>
+                  <option>Hatchback</option>
                   <option>SUV_Utility</option>
-                  <option>sedon</option>
+                  <option>Sedan</option>
                 </select>
               </div>
 
@@ -127,21 +131,21 @@ export default function Home() {
                 <Link key={car.id} href={`/cars/${car.id}`} style={{ textDecoration: 'none' }}>
                   <div className="ledger-card h-full flex flex-col">
                     <div className="relative h-60 overflow-hidden border-b border-border">
-                      <img
+                      <Image
                         src={car.image.startsWith('http') ? car.image : `/${car.image}`}
                         alt={car.model}
-                        className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-500"
-                        style={{ objectFit: 'cover' }}
+                        fill
+                        className="object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-500"
                       />
                       <div className="absolute top-0 right-0 bg-accent text-background px-3 py-1 mono-text text-[9px] font-black">
-                        {car.type}
+                        {car.type.toUpperCase()}
                       </div>
                     </div>
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-6">
                         <div>
                           <h3 className="text-xl font-black text-primary mb-1 uppercase tracking-tighter">{car.make} <span className="text-accent">{car.model}</span></h3>
-                          <p className="mono-text text-[10px] text-muted">{car.year} // {car.transmission}</p>
+                          <p className="mono-text text-[10px] text-muted">{car.year} {"//"} {" "}{car.transmission}</p>
                         </div>
                         <div className="text-right">
                           <p className="text-xl font-black text-primary">₹{car.pricePerDay}</p>
@@ -183,7 +187,7 @@ export default function Home() {
               {[
                 { icon: Shield, title: "INTEGRITY_CHECK", desc: "Every asset undergoes real-time diagnostic synchronization before deployment." },
                 { icon: Clock, title: "NULL_LATENCY", desc: "Near-instantaneous requisition and deployment across all metropolitan nodes." },
-                { icon: Car, title: "DIRECT_UPLINK", desc: "Automated vehicle redirection to your current geolocation coordinates." }
+                { icon: CarIcon, title: "DIRECT_UPLINK", desc: "Automated vehicle redirection to your current geolocation coordinates." }
               ].map((benefit, i) => (
                 <div key={i} className="ledger-card p-10 group">
                   <div className="w-12 h-12 border border-border flex items-center justify-center mb-8 border-accent group-hover:bg-accent group-hover:text-background transition-all">

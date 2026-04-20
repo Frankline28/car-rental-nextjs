@@ -307,10 +307,24 @@
       "packageName": "Daily",
       "date": "2026-04-20T12:29",
       "totalAmount": 51792,
-      "status": "confirmed",
+      "status": "cancelled",
       "paymentMethod": "wallet",
       "timestamp": "2026-04-19T07:00:06.685Z",
       "id": "Ea151eu8QiI"
+    },
+    {
+      "userId": "SwGus-XRlSE",
+      "carId": "2",
+      "carName": "maruti suzuki baleno",
+      "carImage": "baleno1.webp",
+      "packageId": "daily",
+      "packageName": "Daily",
+      "date": "2026-04-23T19:28",
+      "totalAmount": 35200,
+      "status": "cancelled",
+      "paymentMethod": "wallet",
+      "timestamp": "2026-04-20T13:58:46.960Z",
+      "id": "Z3TQfg154-A"
     }
   ],
   "packages": [

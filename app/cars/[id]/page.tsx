@@ -2,33 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import { API } from '@/lib/api';
+import type { Car, Package } from '@/lib/api';
 import { useParams, useRouter } from 'next/navigation';
 import { 
-  Shield, 
-  Clock, 
-  Car, 
+  Car as CarIcon,
   MapPin, 
-  Star, 
-  ChevronRight, 
-  CheckCircle2, 
-  Zap, 
-  Users, 
-  Fuel, 
-  Gauge, 
   ArrowLeft,
   Calendar,
   ShieldCheck,
-  MousePointer2
+  Zap,
+  Users,
+  Fuel,
+  Gauge
 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 import styles from './CarDetails.module.css';
 
 export default function CarDetailsPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [car, setCar] = useState(null);
-  const [packages, setPackages] = useState([]);
+  const [car, setCar] = useState<Car | null>(null);
+  const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPackage, setSelectedPackage] = useState('daily');
 
@@ -60,7 +55,7 @@ export default function CarDetailsPage() {
   if (!car) return (
     <div className={styles.page}>
        <div className="max-w-7xl mx-auto px-4 text-center py-40">
-          <Car className="w-16 h-16 text-muted mx-auto mb-6" />
+          <CarIcon className="w-16 h-16 text-muted mx-auto mb-6" />
           <h2 className="text-2xl font-black text-primary mb-4 uppercase">[ ERROR: ASSET_NOT_LOCATED ]</h2>
           <Link href="/cars" className="btn-cyber">Back_to_Fleet</Link>
        </div>
@@ -103,9 +98,17 @@ export default function CarDetailsPage() {
 
           <section className={styles.gallery}>
             <div className={styles.mainImageContainer}>
-              <img src={car.image.startsWith('http') ? car.image : `/${car.image}`} alt={car.model} className={styles.mainImage} />
+              <div className="relative w-full h-full min-h-[400px]">
+                <Image 
+                  src={car.image.startsWith('http') ? car.image : `/${car.image}`} 
+                  alt={car.model} 
+                  fill
+                  priority
+                  className="object-cover grayscale" 
+                />
+              </div>
               <div className="absolute top-0 right-0 bg-accent text-background px-6 py-2 mono-text text-sm font-black">
-                {car.type}_SPEC
+                {car.type.toUpperCase()}_SPEC
               </div>
             </div>
 
@@ -114,7 +117,7 @@ export default function CarDetailsPage() {
                  { icon: Users, label: "Payload", value: `${car.seats} Units` },
                  { icon: Fuel, label: "Propulsion", value: car.fuel },
                  { icon: Gauge, label: "Terminal_V", value: "250 KM/H" },
-                 { icon: Car, label: "Interface", value: car.transmission },
+                 { icon: CarIcon, label: "Interface", value: car.transmission },
                  { icon: ShieldCheck, label: "Integrity", value: "Verified" },
                  { icon: Zap, label: "Class", value: car.type }
                ].map((item, i) => (
@@ -153,13 +156,18 @@ export default function CarDetailsPage() {
                 <label className="mono-text text-[9px] text-muted block mb-4">Select_Package</label>
                 <div className="grid grid-cols-1 gap-2">
                   {packages.map(pkg => (
-                    <button 
-                       key={pkg.id}
-                       onClick={() => setSelectedPackage(pkg.id)}
-                       className={`btn-cyber ${selectedPackage === pkg.id ? 'btn-cyber-active' : ''} w-full`}
-                    >
-                       {pkg.name} // ₹{car?.[`pricePer${pkg.name}`] || car.pricePerDay}
-                    </button>
+                     <button 
+                        key={pkg.id}
+                        onClick={() => setSelectedPackage(pkg.id)}
+                        className={`btn-cyber ${selectedPackage === pkg.id ? 'btn-cyber-active' : ''} w-full`}
+                     >
+                        {pkg.name} {"//"} ₹{
+                          pkg.id === 'hourly' ? car.pricePerHour :
+                          pkg.id === 'weekly' ? car.pricePerWeekly :
+                          pkg.id === 'monthly' ? car.pricePerMonthly :
+                          car.pricePerDay
+                        }
+                     </button>
                   ))}
                 </div>
               </div>
@@ -198,7 +206,7 @@ export default function CarDetailsPage() {
               disabled={!car.available}
               className="btn-cyber btn-cyber-active w-full py-5 text-base disabled:opacity-20"
             >
-              Transfer_Credits // Next {">"}
+              Transfer_Credits {"//"} {"Next"} {">"}
             </button>
           </div>
 

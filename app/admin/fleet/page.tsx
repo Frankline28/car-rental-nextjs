@@ -3,16 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/lib/auth';
 import { API } from '@/lib/api';
+import type { Car } from '@/lib/api';
 import { 
   Plus, 
   Trash2, 
   Edit3, 
   Search, 
-  Car, 
-  Save, 
-  X,
-  Upload,
-  CheckCircle2
+  Car as CarIcon, 
+  Save
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
@@ -21,14 +19,14 @@ import styles from './AdminFleet.module.css';
 export default function AdminFleetPage() {
   const { user, isLoading: authLoading } = useAuth();
   const router = useRouter();
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState<Car[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [editingCar, setEditingCar] = useState(null);
+  const [editingCar, setEditingCar] = useState<Car | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   // Form State
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Partial<Car>>({
     make: '',
     model: '',
     year: 2024,
@@ -47,16 +45,6 @@ export default function AdminFleetPage() {
     specifications: { engine: '', power: '' }
   });
 
-  useEffect(() => {
-    if (!authLoading && (!user || user.role !== 'admin')) {
-      router.push('/auth/login');
-    }
-  }, [user, authLoading, router]);
-
-  useEffect(() => {
-    fetchCars();
-  }, []);
-
   const fetchCars = async () => {
     try {
       const data = await API.cars.getAll();
@@ -68,7 +56,17 @@ export default function AdminFleetPage() {
     }
   };
 
-  const handleOpenModal = (car = null) => {
+  useEffect(() => {
+    if (!authLoading && (!user || user.role !== 'admin')) {
+      router.push('/auth/login');
+    }
+  }, [user, authLoading, router]);
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
+
+  const handleOpenModal = (car: Car | null = null) => {
     if (car) {
       setEditingCar(car);
       setFormData({ ...car });
@@ -162,7 +160,7 @@ export default function AdminFleetPage() {
              [1, 2, 3].map(i => <div key={i} className="h-24 bg-surface border border-border animate-pulse" />)
            ) : filteredCars.length === 0 ? (
              <div className="p-20 text-center border border-dashed border-border">
-                <Car className="w-12 h-12 text-muted mx-auto mb-4" />
+                <CarIcon className="w-12 h-12 text-muted mx-auto mb-4" />
                 <p className="mono-text text-xs text-muted">[ NO_MATCHING_ASSETS_FOUND ]</p>
              </div>
            ) : (
@@ -234,12 +232,19 @@ export default function AdminFleetPage() {
                                   <input 
                                      type="text" 
                                      className={styles.input}
-                                     value={formData.image}
+                                     value={formData.image || ''}
                                      onChange={(e) => setFormData({...formData, image: e.target.value})}
                                   />
                                </div>
-                               <div className="aspect-video bg-surface-accent border border-border overflow-hidden">
-                                  <img src={formData.image && (formData.image.startsWith('http') ? formData.image : `/${formData.image}`)} className="w-full h-full object-cover grayscale" alt="Preview" style={{ objectFit: 'cover' }} />
+                               <div className="relative aspect-video bg-surface-accent border border-border overflow-hidden">
+                                  {formData.image && (
+                                    <img 
+                                      src={formData.image.startsWith('http') ? formData.image : `/${formData.image}`} 
+                                      className="w-full h-full object-cover grayscale" 
+                                      alt="Preview" 
+                                      style={{ objectFit: 'cover' }} 
+                                    />
+                                  )}
                                </div>
                             </div>
 
