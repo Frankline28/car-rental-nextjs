@@ -56,7 +56,7 @@ export default function Home() {
               </span>
               <h1 className={styles.title}>
                 Frank<br />
-                <span className={styles.titleAccent}>Mobility</span>
+                <span>Mobility</span>
               </h1>
               <p className={styles.description}>
                 High-performance vehicle acquisition protocol. Specialized for elite operators and technical consultants.
