@@ -31,7 +31,7 @@ export default function Footer() {
         <div className={styles.grid}>
           <div className={styles.brandInfo}>
             <Link href="/" className={styles.logo}>
-              LUXE<span className={styles.logoAccent}>DRIVE</span>
+              FRANK <span className={styles.logoAccent}>CAR RENTAL</span>
             </Link>
             <p className={styles.tagline}>
               High-performance vehicle acquisition protocol. Cryptographically secured transactions. Global deployment capability.

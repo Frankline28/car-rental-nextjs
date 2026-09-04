@@ -56,7 +56,7 @@ export default function FleetPage() {
     return matchesSearch && matchesType;
   });
 
-  const categories = ['All', 'Luxury', 'SUV', 'Sport', 'Coupe'];
+  const categories = ['All', 'Hatchback', 'SUV', 'Sedan'];
 
   /* ================= UI ================= */
 
@@ -71,7 +71,7 @@ export default function FleetPage() {
 
           {/* SEARCH */}
           <div className={styles.filterSection}>
-            <p className="mono-text text-accent mb-4">[ ACCESS_PORTAL ]</p>
+            <p className="mono-text text-accent mb-4"></p>
 
             <div className="relative">
               <input
@@ -87,7 +87,7 @@ export default function FleetPage() {
 
           {/* FILTER */}
           <div className={styles.filterSection}>
-            <h4 className={styles.filterTitle}>Category_Node</h4>
+            <h4 className={styles.filterTitle}>Cars</h4>
 
             <div className={styles.categoryGrid}>
               {categories.map((cat) => (
@@ -111,7 +111,7 @@ export default function FleetPage() {
 
           <header className={styles.header}>
             <div>
-              <p className="mono-text text-accent mb-2">[ DATA_STREAM ]</p>
+              <p className="mono-text text-accent mb-2"></p>
               <h1 className={styles.title}>Asset_Inventory</h1>
             </div>
 
@@ -154,7 +154,7 @@ export default function FleetPage() {
                             }
                             alt={car.model || 'Car'}
                             fill
-                            className="object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+                            className="object-cover transition-all duration-700"
                           />
 
                           <div className="absolute bottom-0 left-0 bg-accent text-background px-4 py-1 mono-text text-[10px] font-black z-10">

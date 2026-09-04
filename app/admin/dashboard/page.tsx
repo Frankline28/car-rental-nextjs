@@ -8,12 +8,7 @@ import {
   Users, 
   Car, 
   Briefcase, 
-  ChevronRight, 
-  ArrowUpRight, 
-  IndianRupee, 
-  Calendar,
-  ShieldCheck,
-  Package
+  IndianRupee
 } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -120,8 +115,8 @@ export default function AdminDashboardPage() {
   const statCards = [
     { label: "NET_REVENUE", value: `₹${stats.revenue.toLocaleString('en-IN')}`, icon: IndianRupee, trend: "+12.5%" },
     { label: "TOTAL_BOOKINGS", value: stats.bookings, icon: Briefcase, trend: "+8.2%" },
-    { label: "ASSET_COUNT", value: stats.cars, icon: Car, trend: "STABLE" },
-    { label: "OPERATOR_BASE", value: stats.users, icon: Users, trend: "+15.3%" },
+    { label: "CARS_COUNT", value: stats.cars, icon: Car, trend: "STABLE" },
+    { label: "USERS", value: stats.users, icon: Users, trend: "+15.3%" },
   ];
 
   return (
@@ -133,16 +128,16 @@ export default function AdminDashboardPage() {
         {/* HEADER */}
         <header className={styles.header}>
           <div>
-            <p className={styles.subtitle}>[ SYSTEM_AUTHORITY_LEVEL_01 ]</p>
-            <h1 className={styles.title}>Executive_Dashboard</h1>
+            <p className={styles.subtitle}></p>
+            <h1 className={styles.title}>Admin Dashboard</h1>
           </div>
 
           <div className="flex gap-4">
             <Link href="/admin/fleet" className="btn-cyber btn-cyber-active">
-              Manage_Fleet
+              CARS
             </Link>
             <Link href="/admin/users" className="btn-cyber">
-              User_Network
+              UserS
             </Link>
           </div>
         </header>
@@ -176,7 +171,7 @@ export default function AdminDashboardPage() {
           {/* BOOKINGS TABLE */}
           <div className={styles.section}>
             <div className="flex justify-between items-end border-b border-border pb-4">
-              <h3 className={styles.sectionTitle}>TRANSACTION_LEDGER</h3>
+              <h3 className={styles.sectionTitle}>TRANSACTION</h3>
             </div>
 
             <div className="ledger-card overflow-hidden">
@@ -235,25 +230,7 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* SIDE PANEL */}
-          <div className="space-y-8">
-
-            <div className="ledger-card p-8">
-              <h3 className={styles.sectionTitle}>QUICK_ACTIONS</h3>
-
-              <div className="space-y-3 mt-6">
-                <button className="btn-cyber w-full flex justify-between">
-                  <Package /> Update Fees
-                </button>
-                <button className="btn-cyber w-full flex justify-between">
-                  <Calendar /> Export Reports
-                </button>
-                <button className="btn-cyber w-full flex justify-between">
-                  <ShieldCheck /> Security Sync
-                </button>
-              </div>
-            </div>
-
-          </div>
+         
 
         </div>
       </main>

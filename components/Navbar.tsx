@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Index', href: '/' },
+    { name: 'Home', href: '/' },
     { name: 'Fleet', href: '/cars' },
     { name: 'Protocol', href: '#' },
     { name: 'Contact', href: '#' },
@@ -24,7 +24,7 @@ export default function Navbar() {
         <Link href="/" className={styles.logo}>
           <div className={styles.statusIndicator} />
           <span className={styles.logoText}>
-            LUXE<span className={styles.logoAccent}>DRIVE</span>
+            frank <span className={styles.logoAccent}>car rental</span>
           </span>
         </Link>
 
@@ -50,7 +50,7 @@ export default function Navbar() {
                 )}
                 {user.role === 'customer' && (
                   <Link href="/dashboard/my-bookings" className={styles.link}>
-                    [Itinerary]
+                    my booking
                   </Link>
                 )}
                 <button 
@@ -58,7 +58,7 @@ export default function Navbar() {
                   className={styles.link}
                   style={{ color: '#ff4444', border: 'none', background: 'none', cursor: 'pointer' }}
                 >
-                  Terminate
+                  logout
                 </button>
               </div>
             ) : (

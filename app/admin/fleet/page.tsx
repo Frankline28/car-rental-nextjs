@@ -5,12 +5,10 @@ import { useAuth } from '@/lib/auth';
 import { API } from '@/lib/api';
 import type { Car } from '@/lib/api';
 import { 
-  Plus, 
   Trash2, 
   Edit3, 
   Search, 
-  Car as CarIcon, 
-  Save
+  Car as CarIcon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
@@ -63,7 +61,21 @@ export default function AdminFleetPage() {
   }, [user, authLoading, router]);
 
   useEffect(() => {
-    fetchCars();
+    let ignore = false;
+    async function loadData() {
+      try {
+        const data = await API.cars.getAll();
+        if (!ignore) setCars(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+    loadData();
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleOpenModal = (car: Car | null = null) => {
@@ -104,7 +116,7 @@ export default function AdminFleetPage() {
       }
       setModalOpen(false);
       fetchCars();
-    } catch (err) {
+    } catch {
       alert('Operation failed');
     }
   };
@@ -114,7 +126,7 @@ export default function AdminFleetPage() {
     try {
       await API.cars.delete(id);
       fetchCars();
-    } catch (err) {
+    } catch {
       alert('Delete failed');
     }
   };
@@ -130,8 +142,8 @@ export default function AdminFleetPage() {
       <main className={styles.container}>
         <header className={styles.header}>
             <div>
-              <p className={styles.subtitle}>[ LOGISTICS_MGMT_v1.2 ]</p>
-              <h1 className={styles.title}>Fleet_Inventory</h1>
+              <p className={styles.subtitle}></p>
+              <h1 className={styles.title}>Cars</h1>
             </div>
             
             <div className={styles.controls}>
@@ -139,7 +151,7 @@ export default function AdminFleetPage() {
                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
                  <input 
                     type="text" 
-                    placeholder="SCAN_FLEET..." 
+                    placeholder="Search..." 
                     className={styles.searchInput}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -150,7 +162,7 @@ export default function AdminFleetPage() {
                  className="btn-cyber btn-cyber-active"
                  style={{ padding: '0 2rem' }}
               >
-                 + Initialize_New_Asset
+                 + Add new cars
               </button>
             </div>
         </header>
@@ -166,7 +178,8 @@ export default function AdminFleetPage() {
            ) : (
              filteredCars.map((car) => (
                 <div key={car.id} className={styles.carRow}>
-                   <img src={car.image.startsWith('http') ? car.image : `/${car.image}`} className={styles.carImage} />
+                   {/* eslint-disable-next-line @next/next/no-img-element */}
+                   <img src={car.image.startsWith('http') ? car.image : `/${car.image}`} className={styles.carImage} alt={`${car.make} ${car.model}`} />
                    
                    <div className={styles.carInfo}>
                       <h3>{car.make} {car.model}</h3>
@@ -218,8 +231,8 @@ export default function AdminFleetPage() {
                    <form onSubmit={handleSubmit}>
                       <div className={styles.modalHeader}>
                          <div>
-                            <p className={styles.subtitle}>[ ASSET_DEFINITION_PROTOCOL ]</p>
-                            <h2 className="text-2xl font-black uppercase">{editingCar ? 'Update_Asset' : 'New_Asset_Entry'}</h2>
+                            <p className={styles.subtitle}></p>
+                            <h2 className="text-2xl font-black uppercase">{editingCar ? 'Update_Asset' : 'New_Car'}</h2>
                          </div>
                          <button type="button" onClick={() => setModalOpen(false)} className="mono-text text-muted hover:text-white uppercase">[ CLOSE ]</button>
                       </div>
@@ -228,7 +241,7 @@ export default function AdminFleetPage() {
                          <div className={styles.formGrid}>
                             <div>
                                <div className={styles.inputGroup}>
-                                  <label className={styles.label}>Visual_Uplink_URL</label>
+                                  <label className={styles.label}>Images</label>
                                   <input 
                                      type="text" 
                                      className={styles.input}
@@ -238,9 +251,10 @@ export default function AdminFleetPage() {
                                </div>
                                <div className="relative aspect-video bg-surface-accent border border-border overflow-hidden">
                                   {formData.image && (
+                                    /* eslint-disable-next-line @next/next/no-img-element */
                                     <img 
                                       src={formData.image.startsWith('http') ? formData.image : `/${formData.image}`} 
-                                      className="w-full h-full object-cover grayscale" 
+                                      className="w-full h-full object-cover" 
                                       alt="Preview" 
                                       style={{ objectFit: 'cover' }} 
                                     />
@@ -251,7 +265,7 @@ export default function AdminFleetPage() {
                             <div>
                                <div className="grid grid-cols-2 gap-4">
                                   <div className={styles.inputGroup}>
-                                     <label className={styles.label}>Manufacturer</label>
+                                     <label className={styles.label}>Brand</label>
                                      <input 
                                         type="text" 
                                         className={styles.input}
@@ -261,7 +275,7 @@ export default function AdminFleetPage() {
                                      />
                                   </div>
                                   <div className={styles.inputGroup}>
-                                     <label className={styles.label}>Model_ID</label>
+                                     <label className={styles.label}>Model</label>
                                      <input 
                                         type="text" 
                                         className={styles.input}
@@ -274,7 +288,7 @@ export default function AdminFleetPage() {
 
                                <div className="grid grid-cols-2 gap-4">
                                   <div className={styles.inputGroup}>
-                                     <label className={styles.label}>Classification</label>
+                                     <label className={styles.label}>types</label>
                                      <select 
                                         className={styles.input}
                                         value={formData.type}
@@ -284,10 +298,13 @@ export default function AdminFleetPage() {
                                         <option>SUV</option>
                                         <option>Sport</option>
                                         <option>Coupe</option>
+                                          <option>Hatchback</option>
+                                          <option>Sedan</option>
+                                          <option>Convertible</option>
                                      </select>
                                   </div>
                                   <div className={styles.inputGroup}>
-                                     <label className={styles.label}>Cycle_Year</label>
+                                     <label className={styles.label}>Year</label>
                                      <input 
                                         type="number" 
                                         className={styles.input}
@@ -299,7 +316,7 @@ export default function AdminFleetPage() {
 
                                <div className="grid grid-cols-2 gap-4">
                                   <div className={styles.inputGroup}>
-                                     <label className={styles.label}>Daily_Price_Array</label>
+                                     <label className={styles.label}>Daily Price</label>
                                      <input 
                                         type="number" 
                                         className={styles.input}
@@ -308,7 +325,7 @@ export default function AdminFleetPage() {
                                      />
                                   </div>
                                   <div className={styles.inputGroup}>
-                                     <label className={styles.label}>Hourly_Price_Array</label>
+                                     <label className={styles.label}>Hourly Price</label>
                                      <input 
                                         type="number" 
                                         className={styles.input}
@@ -326,7 +343,7 @@ export default function AdminFleetPage() {
                                         checked={formData.available}
                                         onChange={(e) => setFormData({...formData, available: e.target.checked})}
                                      />
-                                     <span className="mono-text text-[10px] text-muted uppercase">Broadcast_Availability_to_Mesh</span>
+                                     <span className="mono-text text-[10px] text-muted uppercase">Availability of cars</span>
                                   </label>
                                </div>
                             </div>
@@ -335,7 +352,7 @@ export default function AdminFleetPage() {
 
                       <div className={styles.modalFooter}>
                          <button type="submit" className="btn-cyber btn-cyber-active flex-grow py-5 uppercase font-black">
-                            {editingCar ? 'Overwrite_Existing_Record' : 'Commit_New_Data'}
+                            {editingCar ? 'Overwrite_Existing_Record' : 'Add'}
                          </button>
                       </div>
                    </form>

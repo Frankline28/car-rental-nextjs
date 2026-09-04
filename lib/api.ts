@@ -54,6 +54,11 @@ export interface Package {
   description: string;
 }
 
+export interface Location {
+  id: string;
+  name: string;
+}
+
 export async function fetcher(endpoint: string, options?: RequestInit) {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     ...options,

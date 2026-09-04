@@ -37,7 +37,7 @@ export default function RegisterPage() {
       <div className={styles.card}>
         <div className={styles.header}>
           <h2 className={styles.title}>Register</h2>
-          <p className={styles.subtitle}>[ NEW_OPERATOR_INITIALIZATION ]</p>
+          <p className={styles.subtitle}></p>
         </div>
 
         {error && (
@@ -48,7 +48,7 @@ export default function RegisterPage() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Identifier (Name)</label>
+            <label className={styles.label}>USER NAME</label>
             <input
               type="text"
               required
@@ -60,7 +60,7 @@ export default function RegisterPage() {
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>Comms (Email)</label>
+            <label className={styles.label}>EMAIL</label>
             <input
               type="email"
               required
@@ -72,7 +72,7 @@ export default function RegisterPage() {
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>Pass_Key</label>
+            <label className={styles.label}>PASSWORD</label>
             <input
               type="password"
               required
@@ -88,14 +88,14 @@ export default function RegisterPage() {
             disabled={loading}
             className="btn-cyber w-full flex justify-center py-4 mt-4"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'INITIALIZE_ACCOUNT'}
+            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'REGESTER'}
           </button>
         </form>
 
         <div className={styles.footer}>
           ACTIVE_OPERATOR? 
           <Link href="/auth/login" className={styles.link}>
-            AUTHENTICATE
+            LOGIN
           </Link>
         </div>
       </div>

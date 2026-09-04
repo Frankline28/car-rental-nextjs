@@ -70,7 +70,7 @@ function CheckoutContent() {
     else if (pkg.id === 'weekly') base = car.pricePerWeekly;
     else if (pkg.id === 'monthly') base = car.pricePerMonthly;
     else base = car.pricePerDay;
-    return base + 2000; // Base + Fees in INR
+    return base + 0; // Base + Fees in INR
   };
 
   const handleConfirm = async () => {
@@ -118,7 +118,7 @@ function CheckoutContent() {
         <div className={styles.content}>
           <header className={styles.header}>
             <p className="mono-text text-accent mb-6">
-              [ TRANSACTION_GATEWAY_v4.2 ]
+              
             </p>
             <h1 className={styles.title}>Confirm_Reservation</h1>
           </header>
@@ -135,12 +135,12 @@ function CheckoutContent() {
                 >
                   <div className={styles.stepHeader}>
                     <div className={styles.stepNumber}>01</div>
-                    <h2 className={styles.stepTitle}>OPERATIONAL_DETAILS</h2>
+                    <h2 className={styles.stepTitle}>PAYMENT_DETAILS</h2>
                   </div>
 
                   <div className={styles.formGrid}>
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Deployment_Timestamp</label>
+                      <label className={styles.label}>Date/time</label>
                       <input
                         type="datetime-local"
                         className={styles.input}
@@ -149,7 +149,7 @@ function CheckoutContent() {
                       />
                     </div>
                     <div className={styles.formGroup}>
-                      <label className={styles.label}>Assigned_Hub</label>
+                      <label className={styles.label}>Location</label>
                       <input
                         type="text"
                         readOnly
@@ -259,7 +259,7 @@ function CheckoutContent() {
                       disabled={submitting || (paymentMethod === 'card' && (!cardName || !cardNumber || !cardExpiry || !cardCVC))}
                       className="btn-cyber btn-cyber-active flex-[2] py-5"
                     >
-                      {submitting ? "[ SYNCING... ]" : "Authorize_Transaction"}
+                      {submitting ? "[ SYNCING... ]" : "Confirm_Booking"}
                     </button>
                   </div>
                 </motion.div>
@@ -276,14 +276,14 @@ function CheckoutContent() {
                   <div className="w-20 h-20 border border-accent flex items-center justify-center mx-auto mb-10">
                     <CheckCircle2 className="w-8 h-8 text-accent" />
                   </div>
-                  <h2 className="text-4xl font-black text-primary mb-6 uppercase tracking-tighter">Asset_Secured</h2>
+                  <h2 className="text-4xl font-black text-primary mb-6 uppercase tracking-tighter">Your booking has been confirmed</h2>
                   <p className="mono-text text-xs text-muted leading-relaxed mb-12 max-w-sm mx-auto">
                     DEPLOYMENT SCHEDULED FOR {(car?.make || 'ASSET').toUpperCase()} {(car?.model || '').toUpperCase()}. DIGITAL DOSSIER SENT TO {(user?.email || 'GATEWAY').toUpperCase()}.
                   </p>
 
                   <div className="flex flex-col gap-4 max-w-xs mx-auto">
-                    <Link href="/dashboard/my-bookings" className="btn-cyber btn-cyber-active">Access_Itinerary</Link>
-                    <Link href="/" className="btn-cyber">End_Session</Link>
+                    <Link href="/dashboard/my-bookings" className="btn-cyber btn-cyber-active">My_booking</Link>
+                    <Link href="/" className="btn-cyber">Back</Link>
                   </div>
                 </motion.div>
               )}
@@ -294,7 +294,7 @@ function CheckoutContent() {
         {/* Sidebar */}
         <aside className={styles.summarySidebar}>
           <div className={styles.summaryCard}>
-            <h3 className={styles.summaryTitle}>RESERVATION_MODESTO</h3>
+            <h3 className={styles.summaryTitle}>RESERVATION_Car</h3>
 
             <div className="mb-10 text-center">
               <div className="relative w-full h-48 mb-6 border border-border">
@@ -302,7 +302,7 @@ function CheckoutContent() {
                   src={car?.image ? (car.image.startsWith('http') ? car.image : `/${car.image}`) : '/placeholder-car.jpg'}
                   alt={car?.model || 'Car'}
                   fill
-                  className="grayscale object-cover"
+                  className="object-cover"
                 />
               </div>
               <h4 className="text-xl font-black text-primary uppercase tracking-tighter">{car?.make} {car?.model}</h4>
@@ -312,20 +312,20 @@ function CheckoutContent() {
             <div className="space-y-4 mb-10">
               <div className={styles.summaryItem}>
                 <span className={styles.summaryLabel}>Base_Payload</span>
-                <span className={styles.summaryValue}>₹{(calculateTotal() - 2000).toLocaleString('en-IN')}</span>
+                <span className={styles.summaryValue}>₹{(calculateTotal() - 0).toLocaleString('en-IN')}</span>
               </div>
               <div className={styles.summaryItem}>
                 <span className={styles.summaryLabel}>Security_Array</span>
-                <span className={styles.summaryValue}>₹1,250.00</span>
+                <span className={styles.summaryValue}>₹0.00</span>
               </div>
               <div className={styles.summaryItem}>
                 <span className={styles.summaryLabel}>Network_Latency_Fee</span>
-                <span className={styles.summaryValue}>₹750.00</span>
+                <span className={styles.summaryValue}>₹0.00</span>
               </div>
             </div>
 
             <div className={styles.totalRow}>
-              <span className={styles.totalLabel}>TOTAL_DEBIT</span>
+              <span className={styles.totalLabel}>TOTAL_AMOUNT</span>
               <span className={styles.totalValue}>₹{calculateTotal().toLocaleString('en-IN')}</span>
             </div>
 

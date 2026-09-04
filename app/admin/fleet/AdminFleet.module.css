@@ -85,11 +85,6 @@
   width: 120px;
   height: 80px;
   object-fit: cover;
-  filter: grayscale(1);
-}
-
-.carRow:hover .carImage {
-  filter: grayscale(0);
 }
 
 .carInfo h3 {

@@ -8,9 +8,8 @@ import { API } from '@/lib/api';
 import { 
   Package, 
   Save, 
-  Info,
-  TrendingDown,
-  Clock,
+  Info, 
+  Clock, 
   Zap
 } from 'lucide-react';
 import { motion } from 'framer-motion';

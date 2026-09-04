@@ -101,15 +101,15 @@ export default function AdminUsersPage() {
         {/* HEADER */}
         <header className={styles.header}>
           <div>
-            <p className={styles.subtitle}>[ ACCESS_MGMT_v2.0 ]</p>
-            <h1 className={styles.title}>Operator_Mesh</h1>
+            <p className={styles.subtitle}></p>
+            <h1 className={styles.title}>USERS</h1>
           </div>
 
           <div className={styles.searchWrapper}>
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
             <input
               type="text"
-              placeholder="FILTER_OPERATORS..."
+              placeholder="Search..."
               className={styles.searchInput}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -155,7 +155,7 @@ export default function AdminUsersPage() {
 
                 <div className={styles.detailsList}>
                   <div className={styles.detailItem}>
-                    <span className={styles.detailLabel}>Access_Level</span>
+                    <span className={styles.detailLabel}>Roles</span>
                     <span
                       className={styles.detailValue}
                       style={{

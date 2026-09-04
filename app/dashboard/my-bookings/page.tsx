@@ -41,7 +41,7 @@ export default function MyBookingsPage() {
     try {
       await API.bookings.update(id, { status: 'cancelled' });
       setBookings(bookings.map(b => b.id === id ? { ...b, status: 'cancelled' } : b));
-    } catch (err) {
+    } catch {
       alert('Cancellation failed');
     }
   };
@@ -61,13 +61,13 @@ export default function MyBookingsPage() {
       <main className={styles.container}>
         <header className={styles.header}>
             <div>
-              <p className={styles.subtitle}>[ AUTHENTICATED_OPERATOR_v4 ]</p>
-              <h1 className={styles.title}>Asset_Ledger</h1>
+             
+              <h1 className={styles.title}>My booking</h1>
             </div>
             
             <div className="flex items-end gap-12">
                <div className="text-right">
-                  <p className="mono-text text-[9px] text-muted mb-1">OPERATOR_ID</p>
+                  <p className="mono-text text-[9px] text-muted mb-1">USER_NAME</p>
                   <p className="mono-text text-xs font-black text-primary">{user?.name.toUpperCase().replace(' ', '_')}</p>
                </div>
                <div className="text-right">
@@ -121,21 +121,21 @@ export default function MyBookingsPage() {
                                 <span className={`${styles.statusBadge} ${booking.status === 'confirmed' ? styles.statusConfirmed : styles.statusCancelled}`}>
                                    {booking.status}
                                 </span>
-                                <span className="mono-text text-[9px] text-muted border border-border px-3 py-1">TRANSACTION_#{booking.id.padStart(5, '0')}</span>
+                                
                              </div>
                              <div className="mono-text text-[9px] text-accent">SECURE_SYNC_OK</div>
                           </div>
 
                           <h3 className={styles.assetTitle}>{booking.carName}</h3>
-                          <div className={styles.infoLine}>[ {booking.packageName.toUpperCase()} ] {"//"} {"ASSIGNED_TO_OPERATOR"}</div>
+                          
                           
                           <div className={styles.specGrid}>
                              <div className={styles.specItem}>
-                                <span className={styles.specLabel}>Deployment_Node</span>
+                                <span className={styles.specLabel}>Location</span>
                                 <span className={styles.specValue}>DOWNTOWN_HUB_A</span>
                              </div>
                              <div className={styles.specItem}>
-                                <span className={styles.specLabel}>Schedule_Start</span>
+                                <span className={styles.specLabel}>Date/time</span>
                                 <span className={styles.specValue}>
                                    {new Date(booking.date).toLocaleDateString()} {"//"} {new Date(booking.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </span>
@@ -150,7 +150,7 @@ export default function MyBookingsPage() {
                              
                              <div className="flex items-center gap-8">
                                 <div className="text-right">
-                                   <p className="mono-text text-[8px] text-muted mb-1">DEBITED_TOTAL</p>
+                                   <p className="mono-text text-[8px] text-muted mb-1">DEBITED_amountL</p>
                                    <p className={styles.price}>₹{booking.totalAmount.toLocaleString('en-IN')}</p>
                                 </div>
                                 {booking.status === 'confirmed' && (
@@ -159,7 +159,7 @@ export default function MyBookingsPage() {
                                       className="btn-cyber text-[8px] py-4"
                                       style={{ color: '#ff4444', borderColor: 'rgba(255, 68, 68, 0.2)' }}
                                    >
-                                      Terminate_Contract
+                                      cancel
                                    </button>
                                 )}
                              </div>

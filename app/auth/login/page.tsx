@@ -58,15 +58,15 @@ function LoginForm() {
 
       <div className={styles.card}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Authorize</h2>
-          <p className={styles.subtitle}>[ SYSTEM_ACCESS_PROTOCOL_v4.2 ]</p>
+          <h2 className={styles.title}>Login</h2>
+          <p className={styles.subtitle}></p>
         </div>
 
         {error && <div className={styles.error}>{error}</div>}
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Identity_Comms (Email)</label>
+            <label className={styles.label}>Email</label>
             <input
               type="email"
               required
@@ -78,7 +78,7 @@ function LoginForm() {
           </div>
 
           <div className={styles.formGroup}>
-            <label className={styles.label}>Security_Token (Password)</label>
+            <label className={styles.label}>Password</label>
             <input
               type="password"
               required
@@ -98,7 +98,7 @@ function LoginForm() {
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
               <span className="flex items-center gap-2">
-                AUTHENTICATE
+                LOGIN
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </span>
             )}
@@ -108,7 +108,7 @@ function LoginForm() {
         <div className={styles.footer}>
           NEW_IDENTITY?
           <Link href="/auth/register" className={styles.link}>
-            INITIALIZE_ACCOUNT
+            REGESTER
           </Link>
         </div>
 
@@ -116,19 +116,19 @@ function LoginForm() {
         <div className="mt-12 grid grid-cols-2 gap-4 opacity-40 hover:opacity-100 transition-opacity">
           <div className="p-4 border border-dashed border-border bg-surface-accent">
             <p className="mono-text text-[8px] text-muted mb-1">
-              ADMIN_AUTO_AUTH
+            
             </p>
             <p className="mono-text text-[9px] text-primary">
-              admin@carrental.com / admin
+              
             </p>
           </div>
 
           <div className="p-4 border border-dashed border-border bg-surface-accent">
             <p className="mono-text text-[8px] text-muted mb-1">
-              CLIENT_AUTO_AUTH
+              
             </p>
             <p className="mono-text text-[9px] text-primary">
-              jane@example.com / password
+              
             </p>
           </div>
         </div>

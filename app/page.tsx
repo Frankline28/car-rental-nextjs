@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { API } from '@/lib/api';
-import type { Car } from '@/lib/api';
+import type { Car, Location } from '@/lib/api';
 import { Car as CarIcon, ChevronRight, Star, Shield, Clock } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import styles from './Home.module.css';
 
 export default function Home() {
   const [featuredCars, setFeaturedCars] = useState<Car[]>([]);
-  const [locations, setLocations] = useState<any[]>([]);
+  const [locations, setLocations] = useState<Location[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -56,15 +56,13 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <span className={styles.badge}>
-                Terminal_Session_01 {"//"} Fleet_Access
+                
               </span>
               <h1 className={styles.title}>
                 Frank<br />
                 <span>Mobility</span>
               </h1>
-              <p className={styles.description}>
-                High-performance vehicle acquisition protocol. Specialized for elite operators and technical consultants.
-              </p>
+              
             </motion.div>
 
             {/* Filter Ledger */}
@@ -85,12 +83,12 @@ export default function Home() {
               </div>
 
               <div className={styles.filterGroup}>
-                <label className={styles.filterLabel}>Temporal_Start</label>
+                <label className={styles.filterLabel}>Date/time</label>
                 <input type="date" className={styles.filterInput} />
               </div>
 
               <div className={styles.filterGroup}>
-                <label className={styles.filterLabel}>Class_Spec</label>
+                <label className={styles.filterLabel}>cars type</label>
                 <select className={styles.filterInput}>
                   <option>All_Variants</option>
                   <option>Hatchback</option>
@@ -104,7 +102,7 @@ export default function Home() {
                   href="/cars"
                   className="btn-cyber btn-cyber-active w-full"
                 >
-                  Execute_Search
+                  Search
                 </Link>
               </div>
             </motion.div>
@@ -115,7 +113,7 @@ export default function Home() {
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <div>
-              <p className="mono-text text-accent mb-4">[ DATABASE_SCAN ]</p>
+              <p className="mono-text text-accent mb-4"></p>
               <h2 className={styles.sectionTitle}>Featured_Assets</h2>
             </div>
             <Link href="/cars" className="mono-text text-xs text-muted hover:text-accent transition-colors flex items-center gap-2">
@@ -135,7 +133,7 @@ export default function Home() {
                         src={car.image.startsWith('http') ? car.image : `/${car.image}`}
                         alt={car.model}
                         fill
-                        className="object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-500"
+                        className="object-cover transition-all duration-500"
                       />
                       <div className="absolute top-0 right-0 bg-accent text-background px-3 py-1 mono-text text-[9px] font-black">
                         {car.type.toUpperCase()}
