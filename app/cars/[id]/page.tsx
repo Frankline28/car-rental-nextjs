@@ -24,7 +24,7 @@ export default function CarDetailsPage() {
   const router = useRouter();
   const [car, setCar] = useState<Car | null>(null);
   const [loading, setLoading] = useState(true);
-  const selectedPackage = 'daily';
+  const selectedPackage: string = 'daily';
 
   useEffect(() => {
     async function fetchData() {
