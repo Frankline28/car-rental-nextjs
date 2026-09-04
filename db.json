@@ -370,6 +370,5 @@
       "id": "4",
       "name": "West Side"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }
